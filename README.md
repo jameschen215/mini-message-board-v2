@@ -1,1 +1,1 @@
-# A Express Start Template with TypeScript
+# Mini Message Board with TypeScript

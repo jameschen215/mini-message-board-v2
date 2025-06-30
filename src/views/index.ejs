@@ -7,5 +7,20 @@
 	</head>
 	<body>
 		<h1><%= locals.title || 'Hey there!'%></h1>
+
+		<div>
+			<% if (locals.messages && locals.messages.length > 0) { %>
+				<ul>
+					<% locals.messages.map(msg => {%>
+						<li>
+							<span><%= msg.text %></span>
+							<span><%= msg.formattedDate %></span>
+						</li>
+					<%})%>
+				</ul>
+			<% } else { %>
+				<span>No messages.</span>
+			<% } %>
+		</div>
 	</body>
 </html>

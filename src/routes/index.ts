@@ -1,6 +1,6 @@
 import {Router} from 'express'
-import { indexController } from '@/controllers'
+import { getAllMessagesController } from '@/controllers';
 
-export const router = Router()
+export const router = Router();
 
-router.get('/', indexController)
+router.get('/', getAllMessagesController);
