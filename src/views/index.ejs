@@ -1,26 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Express-TypeScript-Starter</title>
-	</head>
-	<body>
-		<h1><%= locals.title || 'Hey there!'%></h1>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/styles/build.css" />
 
-		<div>
-			<% if (locals.messages && locals.messages.length > 0) { %>
-				<ul>
-					<% locals.messages.map(msg => {%>
-						<li>
-							<span><%= msg.text %></span>
-							<span><%= msg.formattedDate %></span>
-						</li>
-					<%})%>
-				</ul>
-			<% } else { %>
-				<span>No messages.</span>
-			<% } %>
-		</div>
-	</body>
+    <title><%= title %></title>
+  </head>
+  <body>
+    <div>
+      <h1 class="text-cyan-600"><%= title %></h1>
+
+      <div>
+        <% if (locals.messages && locals.messages.length > 0) { %>
+        <ul>
+          <% for (const msg of messages) { %>
+          <li><%= msg.text %></li>
+          <% } %>
+        </ul>
+        <% } else { %> No messages. <% } %>
+      </div>
+
+      <a href="/new">Create a new message</a>
+    </div>
+  </body>
 </html>

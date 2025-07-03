@@ -1,6 +1,6 @@
-export type MessageType = {
+export interface MessageType {
   id: number;
-  username: string;
   text: string;
+  username: string;
   created: Date;
 }
