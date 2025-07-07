@@ -3,12 +3,12 @@
   "compilerOptions": {
     "esModuleInterop": true,
     "outDir": "./dist",
-    "rootDir": "./",
+    "rootDir": "./src",
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]
     }
   },
-  "include": ["**/*.ts", "eslint.config.js", "src/public/scripts/notes.js"],
-  "exclude": ["dist"]
+  "include": ["src/**/*.ts"],
+  "exclude": ["dist", "node_modules"]
 }

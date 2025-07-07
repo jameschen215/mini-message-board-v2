@@ -1,6 +1,6 @@
 [build]
   builder = "nixpacks"
-  buildCommand = "npm run build && npm run build:css:prod"
+  buildCommand = "npm run build"
 
 [deploy]
   startCommand = "npm start"
