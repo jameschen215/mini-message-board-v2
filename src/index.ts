@@ -1,4 +1,4 @@
-import express, { NextFunction, Response, Request } from "express";
+import express from "express";
 import morgan from "morgan";
 import helmet from "helmet";
 import cors from "cors";
@@ -7,6 +7,7 @@ import url from "url";
 
 import { router as indexRoutes } from "@/routes/indexRoutes.js";
 import { CustomNotFoundError } from "@/errors/CustomNotFoundError.js";
+import { errorHandler } from "@/controllers/errorController.js";
 
 const PORT = process.env.PORT ?? "9001";
 const __filename = url.fileURLToPath(import.meta.url);
@@ -21,6 +22,7 @@ app.set("views", path.join(__dirname, "views"));
 // Middleware
 app.use(cors());
 app.use(helmet());
+
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -33,27 +35,7 @@ app.use((_req, _res) => {
   throw new CustomNotFoundError("Page Not Found");
 });
 
-// global error
-interface CustomError extends Error {
-  statusCode?: number;
-  status?: number;
-}
-
-app.use(
-  (err: CustomError, _req: Request, res: Response, _next: NextFunction) => {
-    console.error(err);
-
-    const statusCode = err.statusCode ?? err.status ?? 500;
-    const message = err.message ? err.message : "Internal Server Error";
-    const title = statusCode === 500 ? "Server Error" : "Error";
-
-    res.status(statusCode).render("error", {
-      title,
-      message,
-      statusCode,
-    });
-  },
-);
+app.use(errorHandler);
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);

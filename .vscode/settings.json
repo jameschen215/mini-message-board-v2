@@ -4,5 +4,6 @@
 
   "[ejs]": {
     "editor.defaultFormatter": "vscode.html-language-features"
-  }
+  },
+  "cSpell.words": ["TIMESTAMPTZ"]
 }

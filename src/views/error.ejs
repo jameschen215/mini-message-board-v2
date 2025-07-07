@@ -4,16 +4,38 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/styles/build.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Handlee&display=swap"
+      rel="stylesheet"
+    />
 
-    <title><%= title %></title>
+    <title>Mini Message Board | Error</title>
   </head>
-  <body>
-    <div>
-      <h1 class="text-cyan-600"><%= statusCode %> - <%= title %></h1>
+  <body class="min-h-screen flex flex-col">
+    <div
+      class="flex-1 bg-zinc-700 text-zinc-800 flex items-center justify-center p-2"
+    >
+      <div
+        class="blackboard w-full h-full md:h-auto md:aspect-video max-w-7xl px-5 bg-zinc-100 flex items-center justify-center"
+      >
+        <div class="flex flex-col justify-center items-center gap-10">
+          <h1 class="text-center handlee text-3xl md:text-5xl">
+            <%= locals.title %>
+          </h1>
 
-      <p><%= message %></p>
+          <p class="text-2xl handlee">
+            <%= locals.statusCode %> - <%= locals.message %>
+          </p>
 
-      <a href="/">Go back home</a>
+          <a
+            href="/"
+            class="px-5 py-2 flex-1 bg-zinc-800 rounded-sm text-zinc-50 uppercase cursor-pointer hover:text-zinc-100 handlee hover:bg-zinc-700 transition-colors duration-200"
+            >Go Back Home</a
+          >
+        </div>
+      </div>
     </div>
   </body>
 </html>

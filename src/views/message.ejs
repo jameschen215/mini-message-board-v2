@@ -5,12 +5,62 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/styles/build.css" />
 
-    <title>Mini Message Board</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Handlee&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>Mini Message Board | Message</title>
   </head>
-  <body>
-    <div>
-      <p><%= locals.message.text %></p>
-      <p><%= locals.message.username %></p>
+  <body class="min-h-screen flex flex-col h-screen bg-zinc-700 text-zinc-800">
+    <div
+      class="w-full max-w-7xl mx-auto h-full p-2 md:px-10 flex flex-col items-center justify-center"
+    >
+      <div
+        class="blackboard w-full h-full p-5 md:p-10 md:h-auto md:aspect-video bg-zinc-100 flex flex-col items-center justify-center"
+      >
+        <div
+          class="w-full max-w-lg mx-auto flex flex-col bg-<%= message.color %>-200 shadow-xl rounded-md px-5 md:px-12"
+        >
+          <h1 class="text-center handlee text-3xl md:text-5xl my-8 md:my-12">
+            Message Detail
+          </h1>
+          <div class="flex md:gap-5 flex-col md:flex-row md:items-baseline">
+            <p class="text-zinc-600 font-light md:basis-24">CONTENT:</p>
+            <p class="font-light handlee text-2xl">
+              <%= locals.message.text %>
+            </p>
+          </div>
+
+          <div
+            class="flex md:gap-5 flex-col md:flex-row md:items-baseline mt-3 md:mt-5"
+          >
+            <p class="text-zinc-600 font-light md:basis-24">AUTHOR:</p>
+            <p class="font-light handlee text-2xl">
+              <%= locals.message.username %>
+            </p>
+          </div>
+
+          <div
+            class="flex md:gap-5 flex-col md:flex-row md:items-baseline mt-3 md:mt-5"
+          >
+            <p class="text-zinc-600 font-light md:basis-24">CREATED AT:</p>
+            <p class="font-light handlee text-2xl">
+              <%= locals.message.formattedDate %>
+            </p>
+          </div>
+
+          <div class="my-8 md:my-12">
+            <a
+              href="/"
+              class="px-5 py-2 flex justify-center items-center flex-1 bg-zinc-800 rounded-sm text-<%= message.color %>-200 uppercase cursor-pointer hover:text-<%= message.color %>-300 hover:bg-zinc-700 transition-colors duration-200"
+              >Go back</a
+            >
+          </div>
+        </div>
+      </div>
     </div>
   </body>
 </html>

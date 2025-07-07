@@ -9,6 +9,6 @@
       "@/*": ["src/*"]
     }
   },
-  "include": ["**/*.ts", "eslint.config.js"],
+  "include": ["**/*.ts", "eslint.config.js", "src/public/scripts/notes.js"],
   "exclude": ["dist"]
 }

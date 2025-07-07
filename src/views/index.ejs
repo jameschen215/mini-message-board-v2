@@ -4,24 +4,69 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/styles/build.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Handlee&display=swap"
+      rel="stylesheet"
+    />
 
-    <title><%= title %></title>
+    <title>Mini Message Board | Messages</title>
   </head>
-  <body>
-    <div>
-      <h1 class="text-cyan-600"><%= title %></h1>
+  <body class="min-h-screen flex flex-col text-zinc-800">
+    <div class="flex-1 bg-zinc-700 flex items-center justify-center p-8">
+      <div
+        class="relative blackboard w-full aspect-video max-w-7xl px-8 pb-10 bg-zinc-100"
+      >
+        <h1
+          class="text-center handlee text-zinc-800 text-3xl md:text-5xl py-10 md:py-14"
+        >
+          Messages
+        </h1>
 
-      <div>
-        <% if (locals.messages && locals.messages.length > 0) { %>
-        <ul>
-          <% for (const msg of messages) { %>
-          <li><%= msg.text %></li>
-          <% } %>
-        </ul>
-        <% } else { %> No messages. <% } %>
+        <div
+          class="w-full [grid-template-columns:repeat(auto-fill,minmax(240px,1fr))] place-items-center gap-15 grid"
+        >
+          <% if (locals.messages && locals.messages.length > 0) { %> <% for
+          (const msg of messages) { %>
+          <a
+            href="/messages/<%= msg.id %>"
+            class="note w-50 h-30 md:w-60 md:h-40 block shadow-md"
+            style="
+              transform: rotate(<%= msg.style.rotation %>deg)
+                translate(
+                  <%= msg.style.offsetX %>px,
+                  <%= msg.style.offsetY %>px
+                );
+            "
+          >
+            <div
+              class="paper <%= msg.style.color %> flex flex-col gap-5 p-5 w-full h-full items-center justify-center"
+            >
+              <span class="line-clamp-2 handlee text-2xl text-center">
+                <%= msg.text %>
+              </span>
+            </div>
+            <div class="paper-shadow"></div>
+          </a>
+          <% } %> <% } else { %> No messages. <% } %>
+        </div>
+        <a
+          href="/new"
+          class="absolute size-6 top-12 md:top-16 md:size-8 text-blue-400 hover:text-blue-500 transition-colors duration-300 right-5 md:right-10"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+          >
+            <title>email-plus</title>
+            <path
+              d="M13 19C13 15.69 15.69 13 19 13C20.1 13 21.12 13.3 22 13.81V6C22 4.89 21.1 4 20 4H4C2.89 4 2 4.89 2 6V18C2 19.11 2.9 20 4 20H13.09C13.04 19.67 13 19.34 13 19M4 8V6L12 11L20 6V8L12 13L4 8M20 15V18H23V20H20V23H18V20H15V18H18V15H20Z"
+            />
+          </svg>
+        </a>
       </div>
-
-      <a href="/new">Create a new message</a>
     </div>
   </body>
 </html>

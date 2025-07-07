@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/styles/build.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Handlee&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>Mini Message Board | Create</title>
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <div
+      class="flex-1 bg-zinc-700 text-zinc-800 flex items-center justify-center p-2"
+    >
+      <div
+        class="blackboard w-full h-full md:h-auto md:aspect-video max-w-7xl px-5 bg-zinc-100 flex items-center justify-center"
+      >
+        <form action="/new" method="post" class="w-full mx-auto max-w-[480px]">
+          <h1 class="text-center handlee text-3xl md:text-5xl my-8 md:my-10">
+            Create a message
+          </h1>
+          <div class="flex flex-col gap-1 mb-5">
+            <label
+              for="username"
+              class="uppercase handlee text-sm text-zinc-600"
+              >Author</label
+            >
+            <input
+              type="text"
+              name="username"
+              id="username"
+              value="<%= locals.data?.username %>"
+              class="outline-0 border border-zinc-300 px-5 py-2 rounded-sm focus-visible:border-zinc-400 focus-visible:bg-white bg-zinc-50"
+            />
+            <% if (locals.errors?.username) { %>
+            <span class="mt-1 text-red-600 text-sm"
+              ><%= errors.username.msg %></span
+            >
+            <% } %>
+          </div>
+          <div class="flex flex-col gap-1 mb-5">
+            <label for="text" class="uppercase handlee text-sm text-zinc-600"
+              >Content</label
+            >
+            <textarea
+              name="text"
+              id="text"
+              rows="8"
+              class="outline-0 border resize-none border-zinc-300 px-5 py-2 rounded-sm focus-visible:border-zinc-400 focus-visible:bg-white bg-zinc-50"
+            >
+<%= locals.data?.text %></textarea
+            >
+            <% if (locals.errors?.text) { %>
+            <span class="mt-1 text-red-600 text-sm"
+              ><%= errors.text.msg %></span
+            >
+            <% } %>
+          </div>
+
+          <div
+            class="flex flex-col w-full gap-2 md:flex-row md:gap-4 my-8 md:my-10"
+          >
+            <a
+              href="/"
+              class="px-5 py-2 flex justify-center items-center flex-1 bg-zinc-800 rounded-sm text-zinc-50 uppercase cursor-pointer hover:text-zinc-100 handlee hover:bg-zinc-700 transition-colors duration-200"
+            >
+              Cancel
+            </a>
+            <button
+              type="submit"
+              class="px-5 py-2 flex-1 bg-zinc-800 rounded-sm text-zinc-50 uppercase cursor-pointer hover:text-zinc-100 handlee hover:bg-zinc-700 transition-colors duration-200"
+            >
+              Create
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,3 +1,89 @@
 @import "tailwindcss";
 
 /* Your custom styles below */
+
+.handlee {
+  font-family: "Handlee", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.blackboard {
+  border: tan solid 12px;
+  border-top: #bda27e solid 12px;
+  border-left: #b19876 solid 12px;
+  border-bottom: #c9ad86 solid 12px;
+  box-shadow:
+    0px 0px 6px 5px rgba(58, 18, 13, 0),
+    0px 0px 0px 2px #c2a782,
+    0px 0px 0px 4px #a58e6f,
+    3px 4px 8px 5px rgba(0, 0, 0, 0.5);
+  box-shadow:
+    inset 2px 2px 3px rgba(0, 0, 0, 0.5),
+    inset -2px -2px 3px rgba(0, 0, 0, 0.5);
+}
+
+.note {
+  position: relative;
+  /* width: 240px;
+  height: 160px; */
+  /* transform: rotate(2deg); */
+  transition: transform 0.3s ease-in-out;
+}
+
+.paper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  /* background: #ffed87; */
+  border-radius: 2px;
+  z-index: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.paper-shadow {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  right: 0;
+  height: 10px;
+  z-index: 0;
+  transition: all 0.3s ease-in-out;
+}
+
+.paper-shadow::before,
+.paper-shadow::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  width: 40%;
+  height: 10px;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.7);
+  transition: all 0.3s ease-in-out;
+}
+
+.paper-shadow::before {
+  left: 10px;
+  transform: skew(-5deg) rotate(-5deg);
+}
+
+.paper-shadow::after {
+  right: 10px;
+  transform: skew(5deg) rotate(5deg);
+}
+
+.note:hover .paper-shadow::before,
+.note:hover .paper-shadow::after {
+  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.4);
+}
+
+.note:hover .paper-shadow::before {
+  left: 5px;
+}
+
+.note:hover .paper-shadow::after {
+  right: 5px;
+}
