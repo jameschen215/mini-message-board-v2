@@ -6,6 +6,7 @@ import { query } from "@/db/pool.js";
 import { MessageType } from "@/types/message.js";
 import { CustomNotFoundError } from "@/errors/CustomNotFoundError.js";
 import { getNoteStyle, getRandomColor } from "@/utils/getNoteStyle.js";
+import { capitalizeFirstLetter } from "@/utils/capitalizeFirstLetter.js";
 
 export async function getMessages(
   _req: Request,
@@ -20,6 +21,8 @@ export async function getMessages(
 
     const styledMessages = messages.map((msg) => ({
       ...msg,
+      text: capitalizeFirstLetter(msg.text),
+      username: capitalizeFirstLetter(msg.username),
       style: getNoteStyle(msg),
     }));
     res.render("index", { title: "Messages", messages: styledMessages });
@@ -48,6 +51,8 @@ export async function getMessageById(
 
     const message = {
       ...row,
+      username: capitalizeFirstLetter(row.username),
+      text: capitalizeFirstLetter(row.text),
       formattedDate: formatDistanceToNow(new Date(row.created), {
         addSuffix: true,
       }),

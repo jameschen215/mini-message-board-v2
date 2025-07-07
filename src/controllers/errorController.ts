@@ -1,3 +1,4 @@
+import { capitalizeFirstLetter } from "@/utils/capitalizeFirstLetter.js";
 import { Request, Response, NextFunction } from "express";
 
 // global error
@@ -19,8 +20,8 @@ export function errorHandler(
   const title = statusCode === 500 ? "Server Error" : "Error";
 
   res.status(statusCode).render("error", {
-    title,
-    message,
+    title: capitalizeFirstLetter(title),
+    message: capitalizeFirstLetter(message),
     statusCode,
   });
 }
