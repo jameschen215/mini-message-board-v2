@@ -53,9 +53,11 @@ export async function getMessageById(
       ...row,
       username: capitalizeFirstLetter(row.username),
       text: capitalizeFirstLetter(row.text),
-      formattedDate: formatDistanceToNow(new Date(row.created), {
-        addSuffix: true,
-      }),
+      formattedDate: capitalizeFirstLetter(
+        formatDistanceToNow(new Date(row.created), {
+          addSuffix: true,
+        }),
+      ),
     } as MessageType;
 
     res.render("message", { title: "Message", message });
