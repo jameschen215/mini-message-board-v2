@@ -4,18 +4,10 @@
   "description": "An Express template with TypeScript, ESLint and Prettier",
   "type": "module",
   "scripts": {
+    "build": "tsc",
     "start": "node dist/index.js",
-    "build": "tsc && postcss ./src/public/styles/styles.css -o ./src/public/styles/build.css",
-    "dev": "tsx --watch src/index.ts",
-    "dev:tailwind": "concurrently \"npm:build:css\" \"npm:dev\"",
-    "build:css": "postcss ./src/public/styles/styles.css -o ./src/public/styles/build.css",
-    "type-check": "tsc --noEmit",
-    "lint": "eslint .",
-    "lint:fix": "eslint --fix .",
-    "format": "prettier --write .",
-    "format:check": "prettier --check .",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "prepare": "husky"
+    "railway:build": "npm run build && npm run build:css:prod",
+    "build:css:prod": "postcss ./src/public/styles/styles.css -o ./src/public/styles/build.css"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
@@ -32,7 +24,6 @@
   "dependencies": {
     "cors": "^2.8.5",
     "date-fns": "^4.1.0",
-    "dotenv": "^17.0.1",
     "ejs": "^3.1.10",
     "express": "^5.1.0",
     "express-validator": "^7.2.1",
