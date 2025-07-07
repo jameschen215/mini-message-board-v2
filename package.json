@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "dev:tailwind": "concurrently \"npm:build:css\" \"npm:dev\"",
-    "dev": "tsx --watch --env-file .env src/index.ts",
-    "start": "node --env-file .env dist/index.js",
+    "dev": "tsx --watch src/index.ts",
+    "start": "node  dist/index.js",
     "build": "tsc",
     "build:css": "postcss ./src/public/styles/styles.css -o ./src/public/styles/build.css --watch",
     "type-check": "tsc --noEmit",
