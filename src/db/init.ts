@@ -1,7 +1,13 @@
 // db/init.ts
 
 import { Client, ClientConfig } from "pg";
-import "dotenv/config";
+
+// Add logging to see what's happening
+console.log("Environment check in db/init.ts:", {
+  NODE_ENV: process.env.NODE_ENV,
+  DATABASE_URL: process.env.DATABASE_URL ? "EXISTS" : "MISSING",
+  DATABASE_URL_length: process.env.DATABASE_URL?.length,
+});
 
 export const dbConfig: ClientConfig = process.env.DATABASE_URL
   ? {
