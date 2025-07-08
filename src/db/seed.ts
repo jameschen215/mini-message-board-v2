@@ -12,7 +12,7 @@ const values = [
   ["Olivia", "Hope you’re having a great day ☀️", getRandomColor()],
 ];
 
-async function seed() {
+export async function seed() {
   await initializeDatabase();
 
   console.log("Seeding ...");
@@ -20,7 +20,11 @@ async function seed() {
   const client = new Client(dbConfig);
   await client.connect();
 
-  await client.query("DELETE FROM messages;");
+  const { rows } = await client.query("SELECT * FROM messages");
+
+  if (rows.length === 0) {
+    await client.query("DELETE FROM messages;");
+  }
 
   await Promise.all(values.map((value) => client.query(stmt, value)));
 
@@ -28,5 +32,3 @@ async function seed() {
 
   console.log("Seeding complete!");
 }
-
-await seed();
