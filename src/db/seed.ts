@@ -1,6 +1,6 @@
 import { Client } from "pg";
-import { dbConfig, initialize } from "@/db/config.js";
-import { getRandomColor } from "@/utils/getNoteStyle.js";
+import { dbConfig, initialize } from "../db/config.js";
+import { getRandomColor } from "../utils/getNoteStyle.js";
 
 const stmt = "INSERT INTO messages (username, text, color) VALUES ($1, $2, $3)";
 const values = [

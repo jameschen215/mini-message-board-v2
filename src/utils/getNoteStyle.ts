@@ -1,5 +1,5 @@
-import { NOTE_COLORS } from "@/constants/constants.js";
-import { MessageType } from "@/types/message.js";
+import { NOTE_COLORS } from "../constants/constants.js";
+import { MessageType } from "../types/message.js";
 
 export function getNoteStyle(message: MessageType) {
   return {

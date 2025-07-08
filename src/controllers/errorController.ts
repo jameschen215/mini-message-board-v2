@@ -1,4 +1,4 @@
-import { capitalizeFirstLetter } from "@/utils/capitalizeFirstLetter.js";
+import { capitalizeFirstLetter } from "../utils/capitalizeFirstLetter.js";
 import { Request, Response, NextFunction } from "express";
 
 // global error

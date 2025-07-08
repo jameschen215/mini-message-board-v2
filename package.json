@@ -6,17 +6,11 @@
   "scripts": {
     "dev:tailwind": "concurrently \"npm:build:css\" \"npm:dev\"",
     "dev": "tsx --watch src/index.ts",
-    "start": "node dist/index.js",
-    "build": "tsc && npm run build:css:prod",
-    "build:css:prod": "postcss ./src/public/styles/styles.css -o ./src/public/styles/build.css",
+    "start": "node dist/src/index.js",
+    "build": "tsc && postcss ./src/public/styles/styles.css -o ./src/public/styles/build.css",
+    "postbuild": "cp -r src/views dist/src/views && cp -r src/public dist/src/public",
     "build:css": "postcss ./src/public/styles/styles.css -o ./src/public/styles/build.css --watch",
-    "type-check": "tsc --noEmit",
-    "lint": "eslint .",
-    "lint:fix": "eslint --fix .",
-    "format": "prettier --write .",
-    "format:check": "prettier --check .",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "prepare": "husky"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
@@ -33,12 +27,14 @@
   "dependencies": {
     "cors": "^2.8.5",
     "date-fns": "^4.1.0",
+    "dotenv": "^17.1.0",
     "ejs": "^3.1.10",
     "express": "^5.1.0",
     "express-validator": "^7.2.1",
     "helmet": "^8.1.0",
     "morgan": "^1.10.0",
-    "pg": "^8.16.3"
+    "pg": "^8.16.3",
+    "tsconfig-paths": "^4.2.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.30.0",
@@ -52,7 +48,6 @@
     "autoprefixer": "^10.4.21",
     "concurrently": "^9.2.0",
     "eslint": "^9.30.0",
-    "husky": "^9.1.7",
     "lint-staged": "^16.1.2",
     "postcss": "^8.5.6",
     "postcss-cli": "^11.0.1",

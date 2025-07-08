@@ -1,12 +1,11 @@
-import { Router } from "express";
-
 import {
   getMessages,
   getCreateForm,
-  getMessageById,
   postNewMessage,
-} from "@/controllers/indexController.js";
-import { messageSchema } from "@/validators/messageSchema.js";
+  getMessageById,
+} from "../controllers/indexController.js";
+import { Router } from "express";
+import { messageSchema } from "../validators/messageSchema.js";
 
 export const router = Router();
 

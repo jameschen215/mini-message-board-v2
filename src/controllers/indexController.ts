@@ -2,11 +2,11 @@ import { NextFunction, Request, Response } from "express";
 import { matchedData, validationResult } from "express-validator";
 import { formatDistanceToNow } from "date-fns";
 
-import { query } from "@/db/pool.js";
-import { MessageType } from "@/types/message.js";
-import { CustomNotFoundError } from "@/errors/CustomNotFoundError.js";
-import { getNoteStyle, getRandomColor } from "@/utils/getNoteStyle.js";
-import { capitalizeFirstLetter } from "@/utils/capitalizeFirstLetter.js";
+import { query } from "../db/pool.js";
+import { MessageType } from "../types/message.js";
+import { CustomNotFoundError } from "../errors/CustomNotFoundError.js";
+import { getNoteStyle, getRandomColor } from "../utils/getNoteStyle.js";
+import { capitalizeFirstLetter } from "../utils/capitalizeFirstLetter.js";
 
 export async function getMessages(
   _req: Request,
