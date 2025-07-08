@@ -9,7 +9,7 @@ import url from "url";
 import { router as indexRoutes } from "./routes/indexRoutes.js";
 import { CustomNotFoundError } from "./errors/CustomNotFoundError.js";
 import { errorHandler } from "./controllers/errorController.js";
-import { query } from "./db/index.js";
+import { initializeDatabase } from "./db/init.js";
 
 const PORT = Number(process.env.PORT ?? "9001");
 const __filename = url.fileURLToPath(import.meta.url);
@@ -30,21 +30,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 
-// Add this to see if DB connection is the issue
-app.get("/health", async (req, res) => {
-  try {
-    console.log("Health check starting...");
-    const { rows } = await query("SELECT * FROM messages");
-    if (rows.length >= 0) {
-      console.log("Database check passed");
-      res.json({ status: "ok", port: PORT });
-    }
-  } catch (error) {
-    console.error("Health check failed:", error);
-    res.status(500).json({ error: "Database connection failed" });
-  }
-});
-
 app.use("/", indexRoutes);
 
 // 404 handler
@@ -54,6 +39,24 @@ app.use((_req, _res) => {
 
 app.use(errorHandler);
 
-app.listen(PORT, "0.0.0.0", () => {
-  console.log(`Server listening on port ${PORT.toString()}`);
-});
+async function startServer() {
+  try {
+    console.log("Initializing database...");
+    await initializeDatabase();
+    console.log("Database initialized successfully");
+
+    app.listen(PORT, "0.0.0.0", () => {
+      console.log(`Server listening on port ${PORT.toString()}`);
+    });
+  } catch (error) {
+    console.error("Database initialization failed:", error);
+    // Still start the server even if DB init fails
+    app.listen(PORT, "0.0.0.0", () => {
+      console.log(
+        `Server listening on port ${PORT.toString()} (DB init failed)`,
+      );
+    });
+  }
+}
+
+await startServer();

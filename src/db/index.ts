@@ -1,3 +1,5 @@
+// db/index.ts
+
 import { Pool } from "pg";
 import { dbConfig } from "./init.js";
 
