@@ -39,5 +39,5 @@ app.use((_req, _res) => {
 app.use(errorHandler);
 
 app.listen(PORT, () => {
-  console.log(`Server listening on port ${PORT}`);
+  console.log(`Server listening on port ${PORT.toString()}`);
 });
