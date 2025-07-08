@@ -9,7 +9,6 @@ import url from "url";
 import { router as indexRoutes } from "./routes/indexRoutes.js";
 import { CustomNotFoundError } from "./errors/CustomNotFoundError.js";
 import { errorHandler } from "./controllers/errorController.js";
-import { seed } from "./db/seed.js";
 
 const PORT = process.env.PORT ?? "9001";
 const __filename = url.fileURLToPath(import.meta.url);
@@ -39,13 +38,6 @@ app.use((_req, _res) => {
 
 app.use(errorHandler);
 
-seed()
-  .then(() => {
-    app.listen(PORT, () => {
-      console.log(`Example app listening on port ${PORT}`);
-    });
-  })
-  .catch((err: unknown) => {
-    console.error("Failed to seed database:", err);
-    process.exit(1);
-  });
+app.listen(PORT, () => {
+  console.log(`Server listening on port ${PORT}`);
+});
