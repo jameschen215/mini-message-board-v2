@@ -29,6 +29,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 
+app.get("/health", (req, res) => {
+  res.json({ status: "ok", port: PORT });
+});
+
 app.use("/", indexRoutes);
 
 // 404 handler
