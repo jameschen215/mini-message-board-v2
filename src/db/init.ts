@@ -21,8 +21,16 @@ export const dbConfig: ClientConfig =
 export async function initializeDatabase() {
   const client = new Client(dbConfig);
   try {
+    console.log("Database config:", {
+      host: dbConfig.host ?? "from connectionString",
+      database: dbConfig.database ?? "from connectionString",
+      ssl: dbConfig.ssl ? "enabled" : "disabled",
+    });
+
     console.log("Connecting to database...");
     await client.connect();
+    console.log("Connected successfully");
+
     console.log("Creating table...");
     await client.query(`
       CREATE TABLE IF NOT EXISTS messages (
@@ -34,8 +42,13 @@ export async function initializeDatabase() {
       );
     `);
     console.log("Table created successfully");
-  } catch (error) {
-    console.error("Database initialization error:", error);
+  } catch (error: unknown) {
+    const err = error as { message?: string; code?: string; detail?: string };
+    console.error("Database initialization error details:", {
+      message: err.message,
+      code: err.code,
+      detail: err.detail,
+    });
     throw error;
   } finally {
     await client.end();
