@@ -1,8 +1,9 @@
 import { NextFunction, Request, Response } from "express";
 import { matchedData, validationResult } from "express-validator";
 import { formatDistanceToNow } from "date-fns";
+import "dotenv/config";
 
-import { query } from "../db/pool.js";
+import { query } from "../db/index.js";
 import { MessageType } from "../types/message.js";
 import { CustomNotFoundError } from "../errors/CustomNotFoundError.js";
 import { getNoteStyle, getRandomColor } from "../utils/getNoteStyle.js";

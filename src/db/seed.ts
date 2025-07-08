@@ -1,5 +1,5 @@
 import { Client } from "pg";
-import { dbConfig, initialize } from "../db/config.js";
+import { dbConfig, initializeDatabase } from "./init.js";
 import { getRandomColor } from "../utils/getNoteStyle.js";
 
 const stmt = "INSERT INTO messages (username, text, color) VALUES ($1, $2, $3)";
@@ -12,8 +12,8 @@ const values = [
   ["Olivia", "Hope you’re having a great day ☀️", getRandomColor()],
 ];
 
-async function populate() {
-  await initialize();
+async function seed() {
+  await initializeDatabase();
 
   console.log("Seeding ...");
 
@@ -26,7 +26,7 @@ async function populate() {
 
   await client.end();
 
-  console.log("Seeding done!");
+  console.log("Seeding complete!");
 }
 
-await populate();
+await seed();
