@@ -10,7 +10,7 @@ import { router as indexRoutes } from "./routes/indexRoutes.js";
 import { CustomNotFoundError } from "./errors/CustomNotFoundError.js";
 import { errorHandler } from "./controllers/errorController.js";
 
-const PORT = process.env.PORT ?? "9001";
+const PORT = Number(process.env.PORT ?? "9001");
 const __filename = url.fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
