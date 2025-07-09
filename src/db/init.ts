@@ -9,18 +9,19 @@ console.log("Environment check in db/init.ts:", {
   DATABASE_URL_length: process.env.DATABASE_URL?.length,
 });
 
-export const dbConfig: ClientConfig = process.env.DATABASE_URL
-  ? {
-      connectionString: process.env.DATABASE_URL,
-      ssl: { rejectUnauthorized: false },
-    }
-  : {
-      database: process.env.DB_NAME ?? "top_users",
-      host: process.env.DB_HOST ?? "localhost",
-      user: process.env.DB_USER ?? "chenjian",
-      password: process.env.DB_PASSWORD ?? "",
-      port: Number(process.env.DB_PORT ?? 5432),
-    };
+export const dbConfig: ClientConfig =
+  process.env.NODE_ENV === "production"
+    ? {
+        connectionString: process.env.DATABASE_URL,
+        ssl: { rejectUnauthorized: false },
+      }
+    : {
+        database: process.env.DB_NAME ?? "top_users",
+        host: process.env.DB_HOST ?? "localhost",
+        user: process.env.DB_USER ?? "chenjian",
+        password: process.env.DB_PASSWORD ?? "",
+        port: Number(process.env.DB_PORT ?? 5432),
+      };
 
 // Update your db/init.ts
 export async function initializeDatabase() {
