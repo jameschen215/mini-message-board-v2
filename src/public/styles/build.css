@@ -237,9 +237,6 @@
   .grid {
     display: grid;
   }
-  .aspect-video {
-    aspect-ratio: var(--aspect-video);
-  }
   .size-6 {
     width: calc(var(--spacing) * 6);
     height: calc(var(--spacing) * 6);
