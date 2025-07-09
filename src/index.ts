@@ -9,7 +9,7 @@ import url from "url";
 import { router as indexRoutes } from "./routes/indexRoutes.js";
 import { CustomNotFoundError } from "./errors/CustomNotFoundError.js";
 import { errorHandler } from "./controllers/errorController.js";
-import { initializeDatabase } from "./db/init.js";
+// import { initializeDatabase } from "./db/init.js";
 
 const PORT = Number(process.env.PORT ?? "9001");
 const __filename = url.fileURLToPath(import.meta.url);
@@ -39,24 +39,28 @@ app.use((_req, _res) => {
 
 app.use(errorHandler);
 
-async function startServer() {
-  try {
-    console.log("Initializing database...");
-    await initializeDatabase();
-    console.log("Database initialized successfully");
+app.listen(PORT, "0.0.0.0", () => {
+  console.log(`Server listening on port ${PORT.toString()}`);
+});
 
-    app.listen(PORT, "0.0.0.0", () => {
-      console.log(`Server listening on port ${PORT.toString()}`);
-    });
-  } catch (error) {
-    console.error("Database initialization failed:", error);
-    // Still start the server even if DB init fails
-    app.listen(PORT, "0.0.0.0", () => {
-      console.log(
-        `Server listening on port ${PORT.toString()} (DB init failed)`,
-      );
-    });
-  }
-}
+// async function startServer() {
+//   try {
+//     console.log("Initializing database...");
+//     await initializeDatabase();
+//     console.log("Database initialized successfully");
 
-await startServer();
+//     app.listen(PORT, "0.0.0.0", () => {
+//       console.log(`Server listening on port ${PORT.toString()}`);
+//     });
+//   } catch (error) {
+//     console.error("Database initialization failed:", error);
+//     // Still start the server even if DB init fails
+//     app.listen(PORT, "0.0.0.0", () => {
+//       console.log(
+//         `Server listening on port ${PORT.toString()} (DB init failed)`,
+//       );
+//     });
+//   }
+// }
+
+// await startServer();
