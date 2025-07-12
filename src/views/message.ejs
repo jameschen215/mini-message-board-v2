@@ -22,31 +22,37 @@
         class="blackboard w-full h-full p-5 md:p-10 md:h-auto md:aspect-video bg-zinc-100 flex flex-col items-center justify-center"
       >
         <div
-          class="w-full max-w-lg mx-auto flex flex-col bg-<%= message.color %>-200 shadow-xl rounded-md px-5 md:px-12"
+          class="w-full max-w-lg mx-auto flex flex-col bg-<%= message.color %>-200 shadow-xl rounded-md px-5 md:px-8"
         >
           <h1 class="text-center handlee text-3xl md:text-5xl my-8 md:my-12">
             Message Detail
           </h1>
-          <div class="flex md:gap-5 flex-col md:flex-row md:items-baseline">
-            <p class="text-zinc-600 font-light md:basis-24">CONTENT:</p>
+          <div class="flex md:gap-2 flex-col md:flex-row md:items-baseline">
+            <p class="text-zinc-600 font-light md:basis-24 md:shrink-0">
+              CONTENT:
+            </p>
             <p class="font-light handlee text-2xl">
               <%= locals.message.text %>
             </p>
           </div>
 
           <div
-            class="flex md:gap-5 flex-col md:flex-row md:items-baseline mt-3 md:mt-5"
+            class="flex md:gap-2 flex-col md:flex-row md:items-baseline mt-3 md:mt-5"
           >
-            <p class="text-zinc-600 font-light md:basis-24">AUTHOR:</p>
+            <p class="text-zinc-600 font-light md:basis-24 md:shrink-0">
+              AUTHOR:
+            </p>
             <p class="font-light handlee text-2xl">
               <%= locals.message.username %>
             </p>
           </div>
 
           <div
-            class="flex md:gap-5 flex-col md:flex-row md:items-baseline mt-3 md:mt-5"
+            class="flex md:gap-2 flex-col md:flex-row md:items-baseline mt-3 md:mt-5"
           >
-            <p class="text-zinc-600 font-light md:basis-24">CREATED AT:</p>
+            <p class="text-zinc-600 font-light md:basis-24 md:shrink-0">
+              CREATED AT:
+            </p>
             <p class="font-light handlee text-2xl">
               <%= locals.message.formattedDate %>
             </p>
