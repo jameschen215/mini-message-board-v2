@@ -390,8 +390,8 @@
     --tw-font-weight: var(--font-weight-light);
     font-weight: var(--font-weight-light);
   }
-  .break-all {
-    word-break: break-all;
+  .wrap-anywhere {
+    overflow-wrap: anywhere;
   }
   .text-blue-400 {
     color: var(--color-blue-400);
